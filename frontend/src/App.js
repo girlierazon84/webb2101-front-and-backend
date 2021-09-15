@@ -41,6 +41,21 @@ function App () {
             } )
     }
 
+    function createUser ( name, age, gender ) {
+        const payLoad = {
+            "name": name,
+            "age": age,
+            "gender": gender
+        }
+        http.post ( '/users', payLoad )
+            .then ( function ( response ) {
+                console.log ( response.data )
+            } )
+            .catch ( function ( error ) {
+                console.log ( error )
+            } )
+    }
+
     return (
         <div>
             <h1>Users API with Axios</h1>
@@ -53,7 +68,14 @@ function App () {
             </button>
             <button onClick={ alive }>Alive</button>
             <button onClick={ getUsers }>getUsers</button>
-            <button onClick={ function () {getUserById ( 10 )} }>getUserById</button>
+            <button onClick={ function () {
+                getUserById ( 14 )
+            } }>getUserById
+            </button>
+            <button onClick={ function () {
+                createUser ( 'Ada', 18, 'Female' )
+            } }>createUser
+            </button>
         </div>
     );
 }
