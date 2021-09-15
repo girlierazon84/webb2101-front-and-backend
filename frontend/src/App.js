@@ -1,8 +1,25 @@
 import './App.css';
 import { useState } from "react";
+import http from './utils/api/UsersApi'
 
-function App() {
-    const [ text, setText ] = useState( 'Paragraph' )
+function App () {
+    const [ text, setText ] = useState ( 'Paragraph' )
+
+    function alive () {
+        http.get ( '/' )
+            .then ( function ( response ) {
+                console.log ( response.data )
+                setText ( response.data )
+            } )
+            .catch ( function ( error ) {
+                // handle error
+                console.log ( error )
+                return 'Error'
+            } )
+            .then ( function () {
+                // Always executed
+            } )
+    }
 
     return (
         <div>
@@ -11,10 +28,10 @@ function App() {
             <p>{ text }</p>
 
             <button onClick={ () => {
-                setText( 'New Text' )
+                setText ( 'New Text' )
             } }>New Text
             </button>
-
+            <button onClick={ alive }>Alive</button>
         </div>
     );
 }
