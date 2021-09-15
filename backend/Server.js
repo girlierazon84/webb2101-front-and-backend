@@ -67,7 +67,7 @@ function getUserIndex (id) {
     return -1
 }
 
-// CRUD = Create, Read, Update, Delete
+// CRUD = Create = (POST), Read = (GET), Update = (PUT), Delete = (DELETE)
 function createNewUser(userData) {
     let user = {
         id: currentId,
@@ -132,7 +132,7 @@ app.get('/', function (req,res) {
     res.send('API is Alive!')
 })
 
-// API CRUD
+// API CRUD = Create = (POST), Read = (GET), Update = (PUT), Delete = (DELETE)
 app.post('/users', function (req, res) {
     createNewUser(req.body)
     res.json('Successfully created a new user')
